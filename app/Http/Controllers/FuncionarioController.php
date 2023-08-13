@@ -27,12 +27,13 @@ class FuncionarioController extends Controller
     public function findById($id){
         $result = $this->model->find($id);
 
-        if(!isset($result)) {
+        if (!isset($result)) {
             $result = [
                 "status" => "404",
-                "mesage" => "Funcionário não encontrado"
+                "message" => "Funcionário não encontrado"
             ];
-        } 
+        }
+
         return response()->json($result);
     }
 
@@ -41,20 +42,29 @@ class FuncionarioController extends Controller
         $data = $request->all();
         $result = $this->model->create($data);
         
-        $message = ($result)
-        ? ["status" => "200", "message" => "Funcionário criado com sucesso", "data" => $this->model->find($result->id)]
-        : ["status" => "400", "message" => "Erro na criação de Funcionário"];
+        $mesage = (!$result)
+        ? ["status" => "400", "message" => "Erro na criação de Funcionário"]
+        : ["status" => "200", "message" => "Funcionário criado com sucesso", "funcionario" => $result];
 
-        return response()->json($message);
+        return response()->json($result);
     }
 
     public function update($id, Request $request){
-        return "Funcion update Users";
+        $func = $this->model->find($id);
+
+        $data = $request->all();
+
+        $result = $func->update($data);
+        $mesage = (!$result)
+        ? ["status" => "400", "message" => "Erro na criação de Funcionário"]
+        : ["status" => "200", "message" => "Funcionário atualizado com sucesso", "funcionario" => $result];
+
+        return $mesage;
     }
 
     public function delete($id, Request $request){
 
-        return "Funcion update Users";
+        return "Funcion delete Users";
     }
 
 }
