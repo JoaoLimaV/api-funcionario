@@ -121,7 +121,9 @@ Body:
 Return: 
 <pre>
     {
-
+        "status": "200",
+        "message": "Funcionário atualizado com sucesso",
+        "funcionario": true
     }
 </pre>
 ##
