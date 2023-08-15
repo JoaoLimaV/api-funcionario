@@ -69,7 +69,6 @@ class FuncionarioController extends Controller
         $delete();
 
         return response()->json(null);
-        return "Funcion delete Users";
     }
 
 }
