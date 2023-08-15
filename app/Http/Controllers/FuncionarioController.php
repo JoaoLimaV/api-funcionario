@@ -66,7 +66,7 @@ class FuncionarioController extends Controller
         
         $func = $this->model->find($id);
         
-        $delete();
+        ->delete();
 
         return response()->json(null);
     }
