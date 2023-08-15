@@ -63,7 +63,12 @@ class FuncionarioController extends Controller
     }
 
     public function delete($id, Request $request){
+        
+        $func = $this->model->find($id);
+        
+        $delete();
 
+        return response()->json(null);
         return "Funcion delete Users";
     }
 
