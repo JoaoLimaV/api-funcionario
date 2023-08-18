@@ -17,7 +17,7 @@ use App\Models\Funcionario;
 $router->get('/', function () use ($router) {
 	$response = [
 		"response" => "Use api/funcionario to access the api. Read the documentation on github",
-		"link_documentation" => "https://github.com/PedroAbreu04/Lab_DevWeb"
+		"link_documentation" => "https://github.com/JoaoLimaV/api-funcionario"
 	];
 
 	return response()->json( $response );
