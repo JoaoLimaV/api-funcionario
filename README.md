@@ -5,7 +5,7 @@ Essa API foi desenvolvida para utilizar na disciplina de Laboratório de Desenvo
 
 This API was developed for use in the Web Development Laboratory course, providing an interactive and well-structured platform for the practical application of the concepts learned. With comprehensive features ranging from fundamentals to advanced techniques, the API prepares students for professional challenges while enhancing the quality of education.
 
-##  Documentação API Funcionários
+##  API documentation
 
 ##  EndPoints
 
