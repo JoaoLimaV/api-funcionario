@@ -99,6 +99,7 @@ class FuncionarioController extends Controller
         return response()->json($message);
     }
 
+<<<<<<< HEAD
     public function delete($id){  
         $result = $this->model->find($id);
 
@@ -111,6 +112,15 @@ class FuncionarioController extends Controller
         $message = ["message" => "Funcionário deletado com sucesso"];
         
         return response()->json($message);
+=======
+    public function delete($id, Request $request){
+        
+        $func = $this->model->find($id);
+        
+        ->delete();
+
+        return response()->json(null);
+>>>>>>> c674684df3e0c625b42a9c10e7e08cfc8a1663b5
     }
 }
 
