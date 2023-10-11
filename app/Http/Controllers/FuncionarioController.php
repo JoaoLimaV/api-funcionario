@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Funcionario;
 
+use App\Mail\EmailController;
+
 class FuncionarioController extends Controller
 {
     /**
@@ -16,12 +18,13 @@ class FuncionarioController extends Controller
     private $model;  
 
     public function __construct(Funcionario $func)
-    {
-        $this->model = $func;
+    {   
+        $this->model = $func;  
     }
 
     public function getAll(){
-        return null;
+        $email = new EmailController();
+        $email->sendConfirmOrder('peusantos484@gmail.com'); 
     }
 
     public function findById($id){

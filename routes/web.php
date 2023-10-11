@@ -1,5 +1,8 @@
 <?php
 
+
+
+require '../vendor/autoload.php';
 /** @var \Laravel\Lumen\Routing\Router $router */
 
 /*
@@ -20,6 +23,7 @@ $router->get('/', function () use ($router) {
 	];
 
 	return response()->json( $response );
+
 });
 
 $router->get('/api/cliente', "ClienteController@getAll");
@@ -33,6 +37,14 @@ $router->put('/api/carrinho/update/item/{id}', "CarrinhoController@updateItem");
 
 $router->get('/api/pedido', "PedidoController@getAll");
 $router->get('/api/pedido/{id}', "PedidoController@findByCustomerId");
+
+
+
+
+
+
+
+$router->get('/api/funcionario', "FuncionarioController@getAll");
 
 
 
