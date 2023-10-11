@@ -10,7 +10,7 @@ class Funcionario extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'id', 'nome', 'telefone', 'cpf', 'rg', 'endereco', 'data_nascimento',
-        'cargo', 'data_admissao', 'data_demissao', 'email', 'sexo', 'status'
+        'id', 'name', 'email', 'password', 'telephone', 'cpf', 'address', 'gender',
+        'birth_date', 'role', 'occupation', 'admission_date', 'dismissal_date', 'status'
     ];
 }

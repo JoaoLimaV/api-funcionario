@@ -12,24 +12,27 @@
 | and give it the Closure to call when that URI is requested.
 |
 */
-use App\Models\Funcionario;
 
 $router->get('/', function () use ($router) {
 	$response = [
-		"response" => "Use api/funcionario to access the api. Read the documentation on github",
-		"link_documentation" => "https://github.com/JoaoLimaV/api-funcionario"
+		"response" => "Use api/cliente to access the api. Read the documentation on github",
+		"link_documentation" => ""
 	];
 
 	return response()->json( $response );
 });
 
-$router->group(['prefix' => '/api/funcionario'], function () use ($router) {
-	$router->get('/', "FuncionarioController@getAll");
-	$router->get('/{id}', "FuncionarioController@findById");
-	$router->post('/save', "FuncionarioController@save");
-	$router->put('/update/{id}', "FuncionarioController@update");
-	$router->delete('/delete/{id}', "FuncionarioController@delete");
-});
+$router->get('/api/cliente', "ClienteController@getAll");
+$router->get('/api/cliente/resume', "ClienteController@getResume");
+$router->get('/api/cliente/{id}', "ClienteController@findById");
+
+$router->get('/api/carrinho', "CarrinhoController@getAll");
+$router->get('/api/carrinho/{id}', "CarrinhoController@findByCustomerId");
+$router->post('/api/carrinho/add/item/{id}', "CarrinhoController@addItem");
+$router->put('/api/carrinho/update/item/{id}', "CarrinhoController@updateItem");
+
+$router->get('/api/pedido', "PedidoController@getAll");
+$router->get('/api/pedido/{id}', "PedidoController@findByCustomerId");
 
 
 

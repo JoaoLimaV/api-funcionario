@@ -21,26 +21,11 @@ class FuncionarioController extends Controller
     }
 
     public function getAll(){
-        $result = $this->model::all();
-
-        if( !$result ) {
-            return response()->json(['message' => 'Funcionário não encontrado'], 404);
-        } 
-
-        return response()->json($result);
-
+        return null;
     }
 
     public function findById($id){
-        $result = $this->model->find($id);
-        
-        if(!$result) {
-            return response()->json(['message' => 'Funcionário não encontrado'], 404);
-        } 
-
-        $message = $this->model->find($result->id);
-
-        return response()->json($message);
+        return null;
     }
 
     public function save(Request $request){

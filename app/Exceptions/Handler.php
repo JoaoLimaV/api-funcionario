@@ -49,10 +49,6 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
-        if ($exception instanceof MethodNotAllowedHttpException) {
-            return response()->json(['message' => 'Método não permitido para esta rota.'], 405);
-        }
-        
         return parent::render($request, $exception);
     }
 }
