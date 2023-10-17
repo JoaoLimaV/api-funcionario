@@ -10,7 +10,7 @@ class ItemCarrinho extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'product_id', 'sale_id', 'amount','discount'
+        'product_id', 'amount','discount'
     ];
 
     public function sale()

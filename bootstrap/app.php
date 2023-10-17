@@ -53,8 +53,8 @@ $app->singleton(
 );
 
 $app->middleware([
-    // ... outros middlewares
-    App\Http\Middleware\CorsMiddleware::class,
+    // ...
+    \App\Http\Middleware\CorsMiddleware::class
 ]);
 
 

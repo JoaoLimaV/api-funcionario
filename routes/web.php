@@ -32,22 +32,18 @@ $router->get('/api/cliente/{id}', "ClienteController@findById");
 
 $router->get('/api/carrinho', "CarrinhoController@getAll");
 $router->get('/api/carrinho/{id}', "CarrinhoController@findByCustomerId");
-$router->post('/api/carrinho/add/item/{id}', "CarrinhoController@addItem");
-$router->put('/api/carrinho/update/item/{id}', "CarrinhoController@updateItem");
+$router->put('/api/carrinho/tosale/{id}', "CarrinhoController@toSale");
+$router->put('/api/carrinho/add/item/{id}', "CarrinhoController@addItem");
+$router->delete('/api/carrinho/delete/item/{id}', "CarrinhoController@deleteItem");
 
 $router->get('/api/pedido', "PedidoController@getAll");
-$router->get('/api/pedido/{id}', "PedidoController@findByCustomerId");
+$router->get('/api/pedido/{id}', "PedidoController@findById");
+$router->get('/api/pedido/cliente/{id}', "PedidoController@findByCustomerId");
+$router->get('/api/pedido/cancel/{id}', "PedidoController@cancelSale");
+$router->get('/api/pedido/update/bad/{id}', "PedidoController@badUpdate");
+$router->get('/api/pedido/update/good/{id}', "PedidoController@goodUpdate");
 
-
-
-
-
-
-
-$router->get('/api/funcionario', "FuncionarioController@getAll");
-
-
-
+$router->put('/api/teste/{id}', "FuncionarioController@teste");
 
 
 

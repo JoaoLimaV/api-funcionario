@@ -31,7 +31,7 @@ class EmailController
         }
     }
 
-    public function sendConfirmOrder($email) {
+    public function sendConfirmOrder($email, $customerName, $orderNumber, $deliveryPrice, $saleDiscount, $salePrice, $saleTotal, $status, $products) {
         try {
             //Recipients
             $this->mail->setFrom('jellytronic.store@gmail.com', 'JellyTronic');
@@ -39,7 +39,8 @@ class EmailController
             // $this->mail->addReplyTo('jellytronic.store@gmail.com', 'Information');
 
             //Content
-            $this->mail->isHTML(true);                                
+            $this->mail->isHTML(true);
+            $this->mail->CharSet = 'UTF-8';                                
             $this->mail->Subject = 'JellyTronic - Reset Password';
 
             $htmlContent = '<!DOCTYPE html>
@@ -124,8 +125,8 @@ class EmailController
                     </tr>
                     <tr>
                         <td style="padding: 20px;">
-                            <p>Olá, {}. A equipe JellyTronic informa,</p>
-                            <p>Seu pedido de número <strong>#1213</strong> com o pagamento <span class="status">PENDENTE</span></p>
+                            <p>Olá, $customerName. A equipe JellyTronic informa,</p>
+                            <p>Seu pedido de número <strong>#$orderNumber</strong> $status</p>
                         </td>
                     </tr>
                     <tr>
@@ -133,24 +134,15 @@ class EmailController
 
                         <p class="title_pedido">Resumo do Pedido:</p>
                             <div style="color: gray;">
-                                <p> <strong> Frete: </strong> 17,99</p>
-                                <p> <strong> Descontos: </strong> 0,00</p>
-                                <p> <strong> Preço a pagar: </strong> 100,00</p>
-                                <p> <strong> Envio Total: </strong> 117,99</p>
+                                <p> <strong> Frete: </strong>R$ $deliveryPrice</p>
+                                <p> <strong> Descontos: </strong>$saleDiscount%</p>
+                                <p> <strong> Preço a pagar: </strong>R$ $salePrice</p>
+                                <p> <strong> Envio Total: </strong>R$ $saleTotal</p>
                             </div>
                         </p>
 
                             <p class="title_pedido">Produtos do Pedido:</p>
-                            <div class="infoProd">
-                                <div class="product-image">
-                                    <img src="https://telleconcell.com.py/storage/images/products/1685557216bVi9LhpP.png" alt="" width="100%">
-                                </div>
-                                <div class="product-info">
-                                    <p><strong>Produto:</strong> Celular Xiaomi Redmi Note 11 Pro 5G 128GB / 6GB RAM</p>
-                                    <p><strong>Preço unitário:</strong> R$ 599,99</p>
-                                    <p><strong>Quantidade:</strong> 2</p>
-                                </div>
-                            </div>
+                            $products
                             <p>Acesse o link abaixo para mais informações:</p>
                             <p style="text-align: center;"><a href="https://seulink.com" class="link_complete_prod">Visualizar pedido completo</a></p>
                         </td>
@@ -179,8 +171,33 @@ class EmailController
             
             </html>
             ';
+            $htmlContent = str_replace('$customerName', $customerName, $htmlContent);
+            $htmlContent = str_replace('$orderNumber', $orderNumber, $htmlContent);
+            $htmlContent = str_replace('$deliveryPrice', $deliveryPrice, $htmlContent);
+            $htmlContent = str_replace('$saleDiscount', $saleDiscount, $htmlContent);
+            $htmlContent = str_replace('$salePrice', $salePrice, $htmlContent);
+            $htmlContent = str_replace('$saleTotal', $saleTotal, $htmlContent);
+            $htmlContent = str_replace('$status', $status, $htmlContent);
+
+            $productHtml = '';
+            foreach ($products as $product) {
+                $productHtml .= '<div class="infoProd">';
+                $productHtml .= '<div class="product-image">';
+                $productHtml .= '<img src="' . $product['image_url'] . '" alt="" width="100%">';
+                $productHtml .= '</div>';
+                $productHtml .= '<div class="product-info">';
+                $productHtml .= '<p><strong>Produto:</strong> ' . $product['name'] . '</p>';
+                $productHtml .= '<p><strong>Preço unitário:</strong> R$ ' . number_format($product['price'], 2, ',', '.') . '</p>';
+                $productHtml .= '<p><strong>Quantidade:</strong> ' . $product['quantity'] . '</p>';
+                $productHtml .= '</div>';
+                $productHtml .= '</div>';
+            }
+
+            $htmlContent = str_replace('$products', $productHtml, $htmlContent);
 
             $this->mail->Body = $htmlContent;
+
+            
 
             $this->mail->send();
             return true;

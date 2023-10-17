@@ -43,6 +43,7 @@ class ClienteController extends Controller
                 );
 
                 $delivery_address[] = $data;
+
             }
 
             $cliente->adresses = $delivery_address;

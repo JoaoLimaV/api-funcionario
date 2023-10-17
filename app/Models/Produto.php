@@ -9,8 +9,8 @@ class Produto extends Model
     protected $primaryKey = 'id';
     public $timestamps = false;
 
-    protected $fillable = [
-        'id_categoria','desc','weight','height',
-        'width','brand','price','stock','unity',
-    ];
+    public function product_img()
+    {
+        return $this->hasMany(ImagemProduto::class, 'product_id', 'id');
+    }
 }
